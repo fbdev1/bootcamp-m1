@@ -7,8 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
-import static services.СityServiceImp.*;
-
 public class Main {
     public static void message() {
         System.out.println("Выберите вариант меню: \n" +
