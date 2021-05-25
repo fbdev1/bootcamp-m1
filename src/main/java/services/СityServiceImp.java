@@ -26,11 +26,9 @@ public class СityServiceImp implements CityService {
     public String listOfCitiesToArray(List<City> list) {
         City[] arrayOfCities = list.toArray(City[]::new);
         City cityWithMaxPopulation = arrayOfCities[0];
-        int index = 0;
         for (int i = 0; i < arrayOfCities.length - 1; i++) {
             if (cityWithMaxPopulation.getPopulation() < arrayOfCities[i + 1].getPopulation()) {
-                cityWithMaxPopulation = arrayOfCities[index = i + 1];
-
+                cityWithMaxPopulation = arrayOfCities[i + 1];
             }
         }
         return "[" + cityWithMaxPopulation.getId() + "]" + " = " + cityWithMaxPopulation.getPopulation();
