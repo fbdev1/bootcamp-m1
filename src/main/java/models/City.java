@@ -1,13 +1,15 @@
 package models;
 
 public class City {
+    private int id;
     private String name;
     private String region;
     private String district;
     private int population;
     private String foundation;
 
-    public City(String name, String region, String district, int population, String foundation) {
+    public City(int id, String name, String region, String district, int population, String foundation) {
+        this.id = id;
         this.name = name;
         this.region = region;
         this.district = district;
@@ -24,6 +26,10 @@ public class City {
                 ", population=" + population +
                 ", foundation='" + foundation + '\'' +
                 '}';
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {

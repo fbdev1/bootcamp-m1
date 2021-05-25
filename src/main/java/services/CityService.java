@@ -10,5 +10,5 @@ public interface CityService {
     List<City> sortByDistrictAndName(List<City> list);
     String listOfCitiesToArray(List<City> list);
     void numberOfCitiesInRegion(List<City> list);
-    void message();
+
 }
