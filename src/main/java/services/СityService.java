@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class cityService {
+public class СityService {
 
     public static List<City> sortByCapital(List<City> list) {
         return list.stream()

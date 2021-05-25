@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
-import static services.cityService.*;
+import static services.СityService.*;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
