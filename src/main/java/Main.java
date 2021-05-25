@@ -8,14 +8,15 @@ import java.io.IOException;
 import java.util.*;
 
 public class Main {
-    public static void message() {
-        System.out.println("Выберите вариант меню: \n" +
+    public static void menuMessage() {
+        System.out.println("\n Выберите вариант меню: \n" +
                 "1 - Вывести исходный список: \n" +
                 "2 - Сортировка по городу \n" +
                 "3 - Сортировка по округу \n" +
                 "4 - Вывести самый большой город (население) \n" +
                 "5 - Количество городов по регионам \n" +
                 "q - Выход");
+
     }
     public static void main(String[] args) throws FileNotFoundException {
         CityService cityService = new СityServiceImp();
@@ -23,14 +24,15 @@ public class Main {
         File file = new File("src/main/resources/listOfCities.txt");
         try (Scanner sc = new Scanner(file).useDelimiter(";")) {
             while (sc.hasNext()) {
-                list.add(new City(Integer.parseInt(sc.next().trim()),sc.next().trim(), sc.next().trim(), sc.next().trim(), Integer.parseInt(sc.next()), sc.next().trim()));
+                list.add(new City(Integer.parseInt(sc.next().trim()),sc.next().trim(),
+                        sc.next().trim(), sc.next().trim(), Integer.parseInt(sc.next()), sc.next().trim()));
             }
         } catch (IOException e) {
             e.getMessage();
         }
 
         Scanner readerScanner = new Scanner(System.in);
-        message();
+        menuMessage();
 
         while (!readerScanner.hasNext("q")) {
             switch (readerScanner.next()) {
@@ -38,33 +40,33 @@ public class Main {
                     for (City c : list) {
                         System.out.println(c);
                     }
-                    message();
+                    menuMessage();
                     break;
                 case "2":
-                    for (City c : cityService.sortByCapital(list)) {
+                    for (City c : cityService.sortByName(list)) {
                         System.out.println(c);
                     }
-                    message();
+                    menuMessage();
                     break;
                 case "3":
                     for (City c : cityService.sortByDistrictAndName(list)) {
                         System.out.println(c);
                     }
-                    message();
+                    menuMessage();
                     break;
                 case "4":
                     System.out.println(cityService.listOfCitiesToArray(list));
-                    message();
+                    menuMessage();
                     break;
                 case "5":
                     for(String s:cityService.numberOfCitiesInRegion(list)) {
                         System.out.println(s);
                     }
-                    message();
+                    menuMessage();
                     break;
                 default:
                     System.out.println("Некорректный вариант");
-                    message();
+                    menuMessage();
             }
         }
     }

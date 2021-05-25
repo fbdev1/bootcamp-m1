@@ -22,11 +22,11 @@ public class CityServiceTest extends TestCase {
         );
     }
 
-    public void testSortByCapital() {
+    public void testSortByName() {
         expected = Arrays.asList(new City(1, "Ревда", "Свердловская область", "Аурал", 45000, "1930")
                 , new City(2, "Тавда", "Свердловская область", "Урал", 40000, "1840")
         );
-        Assert.assertEquals(expected, cityService.sortByCapital(actual));
+        Assert.assertEquals(expected, cityService.sortByName(actual));
     }
 
     public void testSortByDistrictAndName() {

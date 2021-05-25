@@ -2,30 +2,29 @@ package services;
 
 import models.City;
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class СityServiceImp implements CityService {
 
-    public List<City> sortByCapital(List<City> list) {
-        return list.stream()
-                .sorted(Comparator.comparing(City::getName, String::compareToIgnoreCase))
-                .collect(Collectors.toList());
+    public List<City> sortByName(List<City> list) {
+        List<City> cities = new ArrayList<>(list);
+        cities.sort(Comparator.comparing(City::getName, String::compareToIgnoreCase));
+        return cities;
+
     }
 
     public List<City> sortByDistrictAndName(List<City> list) {
-        return list.stream()
-                .sorted(Comparator.comparing(City::getName))
-                .collect(Collectors.groupingBy(City::getDistrict))
-                .entrySet().stream()
-                .sorted(Map.Entry.comparingByKey())
-                .map(Map.Entry::getValue)
-                .flatMap(Collection::stream)
-                .collect(Collectors.toList());
+        List<City> cities = new ArrayList<>(list);
+        cities.sort(Comparator.comparing(City::getDistrict, String::compareToIgnoreCase)
+                .thenComparing(City::getName, String::compareToIgnoreCase));
+        return cities;
+
     }
 
     public String listOfCitiesToArray(List<City> list) {
-        City[] arrayOfCities = list.stream().toArray(City[]::new);
+        City[] arrayOfCities = list.toArray(City[]::new);
         City cityWithMaxPopulation = arrayOfCities[0];
         int index = 0;
         for (int i = 0; i < arrayOfCities.length - 1; i++) {
@@ -43,7 +42,6 @@ public class СityServiceImp implements CityService {
         for (Map.Entry city : regions.entrySet()) {
             List<City> cities = (List) city.getValue();
             listOfCities.add(city.getKey() + ": " + cities.size());
-//            System.out.println(city.getKey() + ": " + cities.size());
         }
         return listOfCities;
     }
