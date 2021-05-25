@@ -2,13 +2,10 @@ package services;
 
 import models.City;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-public class СityServiceImp implements CityService{
+public class СityServiceImp implements CityService {
 
     public List<City> sortByCapital(List<City> list) {
         return list.stream()
@@ -40,15 +37,16 @@ public class СityServiceImp implements CityService{
         return "[" + cityWithMaxPopulation.getId() + "]" + " = " + cityWithMaxPopulation.getPopulation();
     }
 
-    public void numberOfCitiesInRegion(List<City> list) {
+    public List<String> numberOfCitiesInRegion(List<City> list) {
+        List<String> listOfCities = new ArrayList<>();
         Map<String, List<City>> regions = list.stream().collect(Collectors.groupingBy(City::getRegion));
         for (Map.Entry city : regions.entrySet()) {
             List<City> cities = (List) city.getValue();
-            System.out.println(city.getKey() + ": " + cities.size());
+            listOfCities.add(city.getKey() + ": " + cities.size());
+//            System.out.println(city.getKey() + ": " + cities.size());
         }
+        return listOfCities;
     }
-
-
 
 
 }

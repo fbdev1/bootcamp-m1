@@ -57,7 +57,9 @@ public class Main {
                     message();
                     break;
                 case "5":
-                    cityService.numberOfCitiesInRegion(list);
+                    for(String s:cityService.numberOfCitiesInRegion(list)) {
+                        System.out.println(s);
+                    }
                     message();
                     break;
                 default:
