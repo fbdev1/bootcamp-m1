@@ -11,7 +11,7 @@ import static services.СityServiceImp.*;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-       CityService cityService = new СityServiceImp();
+        CityService cityService = new СityServiceImp();
         List<City> list = new ArrayList<>();
         File file = new File("src/main/resources/listOfCities.txt");
         try (Scanner sc = new Scanner(file).useDelimiter(";")) {
