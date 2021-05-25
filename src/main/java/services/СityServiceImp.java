@@ -8,15 +8,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class СityService {
+public class СityServiceImp implements CityService{
 
-    public static List<City> sortByCapital(List<City> list) {
+    public List<City> sortByCapital(List<City> list) {
         return list.stream()
                 .sorted(Comparator.comparing(City::getName, String::compareToIgnoreCase))
                 .collect(Collectors.toList());
     }
 
-    public static List<City> sortByDistrictAndName(List<City> list) {
+    public List<City> sortByDistrictAndName(List<City> list) {
         return list.stream()
                 .sorted(Comparator.comparing(City::getName))
                 .collect(Collectors.groupingBy(City::getDistrict))
@@ -27,7 +27,7 @@ public class СityService {
                 .collect(Collectors.toList());
     }
 
-    public static String listOfCitiesToArray(List<City> list) {
+    public String listOfCitiesToArray(List<City> list) {
         City[] arrayOfCities = list.stream().toArray(City[]::new);
         City cityWithMaxPopulation = arrayOfCities[0];
         int index = 0;
@@ -40,7 +40,7 @@ public class СityService {
         return "[" + index + "]" + " = " + cityWithMaxPopulation.getPopulation();
     }
 
-    public static void numberOfCitiesInRegion(List<City> list) {
+    public void numberOfCitiesInRegion(List<City> list) {
         Map<String, List<City>> map = list.stream().collect(Collectors.groupingBy(City::getRegion));
         int numberOfCity = 0;
 
@@ -50,12 +50,12 @@ public class СityService {
         }
     }
 
-    public static void message() {
+    public void message() {
         System.out.println("Выберите вариант меню: \n" +
                 "1 - Вывести исходный список: \n" +
                 "2 - Сортировка по городу \n" +
                 "3 - Сортировка по округу \n" +
-                "4 - Сортировка по населению \n" +
+                "4 - Самый большой город (население) \n" +
                 "5 - Количество городов по регионам \n" +
                 "q - Выход");
     }
