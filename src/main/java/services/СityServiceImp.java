@@ -37,16 +37,14 @@ public class СityServiceImp implements CityService{
 
             }
         }
-        return "[" + index + "]" + " = " + cityWithMaxPopulation.getPopulation();
+        return "[" + cityWithMaxPopulation.getId() + "]" + " = " + cityWithMaxPopulation.getPopulation();
     }
 
     public void numberOfCitiesInRegion(List<City> list) {
-        Map<String, List<City>> map = list.stream().collect(Collectors.groupingBy(City::getRegion));
-        int numberOfCity = 0;
-
-        for (Map.Entry city : map.entrySet()) {
-            List<City> ar = (List) city.getValue();
-            System.out.println(city.getKey() + ": " + ar.size());
+        Map<String, List<City>> regions = list.stream().collect(Collectors.groupingBy(City::getRegion));
+        for (Map.Entry city : regions.entrySet()) {
+            List<City> cities = (List) city.getValue();
+            System.out.println(city.getKey() + ": " + cities.size());
         }
     }
 
