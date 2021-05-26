@@ -1,12 +1,16 @@
 package services;
 
+import dao.DaoCity;
+import dao.DaoCityImp;
 import models.City;
 
 import java.awt.image.AreaAveragingScaleFilter;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class СityServiceImp implements CityService {
+    private static final DaoCity daoCity = new DaoCityImp();
 
     public List<City> sortByName(List<City> list) {
         List<City> cities = new ArrayList<>(list);
@@ -42,6 +46,16 @@ public class СityServiceImp implements CityService {
             listOfCities.add(city.getKey() + ": " + cities.size());
         }
         return listOfCities;
+    }
+
+    @Override
+    public void insertRecord(City city) throws SQLException {
+        daoCity.insertRecord(city);
+    }
+
+    @Override
+    public List<City> getRecords() {
+        return daoCity.getRecords();
     }
 
 
